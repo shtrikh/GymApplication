@@ -12,14 +12,14 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the project using Maven
-                sh 'mvn clean package' // Adjust the Maven command as needed
+                bat 'mvn clean package' // Adjust the Maven command as needed
             }
         }
         
         stage('Run Tests') {
             steps {
                 // Run tests using Maven and JUnit
-                sh 'mvn test' // Adjust the Maven command as needed
+                bat 'mvn test' // Adjust the Maven command as needed
             }
         }
         
