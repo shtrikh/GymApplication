@@ -1,0 +1,46 @@
+-- Create User table
+CREATE TABLE User (
+                      ID INT AUTO_INCREMENT PRIMARY KEY,
+                      FirstName VARCHAR(255) NOT NULL,
+                      LastName VARCHAR(255) NOT NULL,
+                      Username VARCHAR(255) NOT NULL,
+                      Password VARCHAR(255) NOT NULL,
+                      IsActive BOOLEAN NOT NULL
+);
+
+-- Create Trainee table
+CREATE TABLE Trainee (
+                         ID INT AUTO_INCREMENT PRIMARY KEY,
+                         DateOfBirth DATE,
+                         Address VARCHAR(255),
+                         Userld INT NOT NULL,
+                         FOREIGN KEY (Userld) REFERENCES User(ID)
+);
+
+-- Create Trainer table
+CREATE TABLE Trainer (
+                         ID INT AUTO_INCREMENT PRIMARY KEY,
+                         Specialization INT NOT NULL,
+                         UserId INT NOT NULL,
+                         FOREIGN KEY (UserId) REFERENCES User(ID)
+);
+
+-- Create TrainingType table
+CREATE TABLE TrainingType (
+                              ID INT AUTO_INCREMENT PRIMARY KEY,
+                              TrainingTypeName VARCHAR(255) NOT NULL
+);
+
+-- Create Training table
+CREATE TABLE Training (
+                          ID INT AUTO_INCREMENT PRIMARY KEY,
+                          TraineeId INT NOT NULL,
+                          TrainerId INT NOT NULL,
+                          TrainingName VARCHAR(255) NOT NULL,
+                          TrainingTypeId INT NOT NULL,
+                          TrainingDate DATE NOT NULL,
+                          TrainingDuration INT NOT NULL,
+                          FOREIGN KEY (TraineeId) REFERENCES Trainee(ID),
+                          FOREIGN KEY (TrainerId) REFERENCES Trainer(ID),
+                          FOREIGN KEY (TrainingTypeId) REFERENCES TrainingType(ID)
+);
