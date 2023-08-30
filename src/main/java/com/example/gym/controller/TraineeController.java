@@ -39,6 +39,15 @@ public class TraineeController {
         return new ResponseEntity<>(trainees, HttpStatus.OK);
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Trainee> updateTrainee(@PathVariable Long id, @RequestBody Trainee trainee) {
+        trainee.setId(id);
+        Trainee updatedTrainee = traineeDAO.update(trainee);
+
+        return new ResponseEntity<>(updatedTrainee, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTraineeById(@PathVariable Long id) {
         boolean deleted = traineeDAO.deleteById(id);
