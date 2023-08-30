@@ -1,9 +1,14 @@
-package entity;
+package com.example.gym.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,14 +18,10 @@ public class Trainee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDate dateOfBirth;
     private String address;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-
+    // Getters and setters
 }
-
